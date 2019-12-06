@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import uuid from 'uuid';
 
 const stateInicial = {
@@ -34,12 +35,15 @@ class NuevaCita extends Component {
             return;
         }
 
+        // generar objetos con los datos
         const nuevaCita = {...this.state.cita};
         nuevaCita.id = uuid();
 
+        //Agregar la cita al state de App
         this.props.crearNuevaCita(nuevaCita);
 
-        this.setState(...stateInicial)
+        //Colocar en el state el state inicial
+        this.setState({...stateInicial});
 
     }
 
@@ -132,6 +136,10 @@ class NuevaCita extends Component {
             </div>
         );
     }
+}
+
+NuevaCita.propTypes = {
+    crearNuevaCita: PropTypes.func.isRequired
 }
 
 export default NuevaCita;
